@@ -1,5 +1,6 @@
 import sys
 import xlwt
+import xlrd
 
 def set_style(name, height, bold=False):
     style = xlwt.XFStyle()
@@ -24,8 +25,31 @@ def write_excel():
 
     f.save('test.xls')
 
+def read_excel():
+    wb = xlrd.open_workbook(filename='./test.xls')
+    print(wb.sheet_names())
+
+    sheet = wb.sheet_by_index(0)
+    print(sheet)
+
+    contacts = []
+    rows = sheet.nrows
+    cols = sheet.ncols
+    for i in range(1, rows):
+        dict = {}
+        for j in range(0, cols):
+            title = sheet.cell_value(0, j)
+            value = sheet.cell_value(i, j)
+            dict[title] = value
+        contacts.append(dict)
+
+    for i in range(len(contacts)):
+        print(contacts[i])
+
+
 def main():
     write_excel()
+    read_excel()
     print("hello world")
 
 if __name__ == '__main__':
