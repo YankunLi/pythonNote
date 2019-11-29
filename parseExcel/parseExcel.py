@@ -2,6 +2,13 @@ import sys
 import xlwt
 import xlrd
 
+class Student:
+    def __init__(self, name, age, email, iq):
+        self.__name = name
+        self.__age = age
+        self.__email = email
+        self.__iq = iq
+
 def set_style(name, height, bold=False):
     style = xlwt.XFStyle()
     font = xlwt.Font()
@@ -15,7 +22,7 @@ def set_style(name, height, bold=False):
 def write_excel():
     f = xlwt.Workbook()
     sheet = f.add_sheet('student', cell_overwrite_ok=True)
-    title = ['name', 'age', 'birthday', 'interest']
+    title = ['name', 'age', 'email', 'iq']
     colume = ['xiaoming', 'zhangsan', 'lisi']
     for i in range(0, len(title)):
         sheet.write(0,i,title[i], set_style('Times New Roman', 220, True))
