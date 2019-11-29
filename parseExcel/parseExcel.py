@@ -9,6 +9,9 @@ class Student:
         self.__email = email
         self.__iq = iq
 
+    def show(self):
+        print("Name: %s\tAge: %d\tEmail: %s\tIQ: %d\n" % (self.__name, self.__age, self.__email, self.__iq))
+
 def set_style(name, height, bold=False):
     style = xlwt.XFStyle()
     font = xlwt.Font()
@@ -55,6 +58,8 @@ def read_excel():
 
 
 def main():
+    stud = Student("xiaoming", 16, '111000@qq.com', 90)
+    stud.show()
     write_excel()
     read_excel()
     print("hello world")
