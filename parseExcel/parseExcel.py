@@ -1,6 +1,7 @@
 import sys
 import xlwt
 import xlrd
+import MySQLdb
 
 class Student:
     def __init__(self, name, age, email, iq):
@@ -56,6 +57,20 @@ def read_excel():
     for i in range(len(contacts)):
         print(contacts[i])
 
+def DB():
+    db = MySQLdb.connect("localhost", "testuser", "test123", "TESTDB", charset='utf8')
+
+    cursor = db.cursor()
+
+    sql = ''
+
+    try:
+        cursor.execute(sql)
+        db.commit()
+    except:
+        db.rollback()
+
+    db.close()
 
 def main():
     stud = Student("xiaoming", 16, '111000@qq.com', 90)
